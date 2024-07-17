@@ -14,14 +14,40 @@
             loading-screen="enabled: false;"
             arjs="sourceType: webcam; debugUIEnabled: false;"
         >
-                <a-image
-                    src="assets/asset.jpeg"
-                    look-at="[gps-camera]"
-                    scale="1 1 1"
-                    gps-entity-place="latitude: 47.670694; longitude: 9.176111;"
-                ></a-image>
+            <a-image
+                id="dynamic-image"
+                src="assets/asset.jpeg"
+                look-at="[gps-camera]"
+                scale="1 1 1"
+            ></a-image>
 
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
+
+        <script>
+            // Function to get the current position
+            function setCoordinates() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+
+                        // Find the a-image element
+                        var image = document.getElementById('dynamic-image');
+                        
+                        // Set the gps-entity-place attribute
+                        image.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+                        
+                        // Show an alert with the coordinates
+                        alert(`Current Coordinates:\nLatitude: ${latitude}\nLongitude: ${longitude}`);
+                    });
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+
+            // Call the function once the page is loaded
+            window.onload = setCoordinates;
+        </script>
     </body>
 </html>
