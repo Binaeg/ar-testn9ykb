@@ -37,9 +37,6 @@
                         
                         // Set the gps-entity-place attribute
                         image.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-                        
-                        // Show an alert with the coordinates
-                        alert(`Current Coordinates:\nLatitude: ${latitude}\nLongitude: ${longitude}`);
                     });
                 } else {
                     alert("Geolocation is not supported by this browser.");
