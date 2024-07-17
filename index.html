@@ -46,8 +46,10 @@
                 }
             }
 
-            // Call the function once the page is loaded
-            window.onload = setCoordinates;
+            // Call the function once the page is loaded with a delay
+            window.onload = function() {
+                setTimeout(setCoordinates, 3000); // Delay to ensure AR.js is fully loaded
+            };
         </script>
     </body>
 </html>
