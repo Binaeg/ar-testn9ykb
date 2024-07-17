@@ -18,35 +18,11 @@
                 id="dynamic-image"
                 src="assets/asset.jpeg"
                 look-at="[gps-camera]"
+                gps-entity-place="latitude: 47.67063752192031; longitude: 9.176135000949103;"
                 scale="1 1 1"
             ></a-image>
 
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
-
-        <script>
-            // Function to get the current position
-            function setCoordinates() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var latitude = position.coords.latitude;
-                        var longitude = position.coords.longitude;
-
-                        // Find the a-image element
-                        var image = document.getElementById('dynamic-image');
-                        
-                        // Set the gps-entity-place attribute
-                        image.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-                    });
-                } else {
-                    alert("Geolocation is not supported by this browser.");
-                }
-            }
-
-            // Call the function once the page is loaded with a delay
-            window.onload = function() {
-                setTimeout(setCoordinates, 3000); // Delay to ensure AR.js is fully loaded
-            };
-        </script>
     </body>
 </html>
